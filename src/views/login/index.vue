@@ -1,90 +1,102 @@
-<head><link rel="stylesheet" href="animate.min.css"></head>
-
 <template>
   <div class="login-container">
-    <div class="ds">
-      <el-card class="box-card">
-        <el-form
-          ref="loginForm"
-          :model="loginForm"
-          :rules="loginRules"
-          class="login-form"
-          auto-complete="on"
-          label-position="left"
-          style="border-radius: 30px"
-        >
-          <div class="title-container">
-            <h3 class="title">Login Form</h3>
-          </div>
-
-          <el-form-item prop="username">
-            <span class="svg-container">
-              <svg-icon icon-class="user" />
-            </span>
-            <el-input
-              ref="username"
-              v-model="loginForm.username"
-              placeholder="Username"
-              name="username"
-              type="text"
-              tabindex="1"
-              auto-complete="on"
-            />
-          </el-form-item>
-
-          <el-form-item prop="password">
-            <span class="svg-container">
-              <svg-icon icon-class="password" />
-            </span>
-            <el-input
-              :key="passwordType"
-              ref="password"
-              v-model="loginForm.password"
-              :type="passwordType"
-              placeholder="Password"
-              name="password"
-              tabindex="2"
-              auto-complete="on"
-              @keyup.enter.native="handleLogin"
-            />
-            <span class="show-pwd" @click="showPwd">
-              <svg-icon
-                :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
-              />
-            </span>
-          </el-form-item>
-
-          <el-button
-            :loading="loading"
-            type="primary"
-            style="
-              width: 100%;
-              margin-bottom: 30px;
-              -webkit-filter: drop-shadow(1px 2px 22px rgb(54, 152, 245));
-            "
-            @click.native.prevent="handleLogin"
-            >Login</el-button
+    <transition
+      appear
+      name="animate__animated animate__slideInDown animate__slow 3s"
+      enter-active-class="animate__slideInDown"
+    >
+      <div class="ds">
+        <el-card class="box-card">
+          <el-form
+            ref="loginForm"
+            :model="loginForm"
+            :rules="loginRules"
+            class="login-form"
+            auto-complete="on"
+            label-position="left"
+            style="border-radius: 30px"
           >
+            <div class="title-container">
+              <h3 class="title">Login Form</h3>
+            </div>
 
-          <div class="tips">
-            <span
+            <el-form-item prop="username">
+              <span class="svg-container">
+                <svg-icon icon-class="user" />
+              </span>
+              <el-input
+                ref="username"
+                v-model="loginForm.username"
+                placeholder="Username"
+                name="username"
+                type="text"
+                tabindex="1"
+                auto-complete="on"
+              />
+            </el-form-item>
+
+            <el-form-item prop="password">
+              <span class="svg-container">
+                <svg-icon icon-class="password" />
+              </span>
+              <el-input
+                :key="passwordType"
+                ref="password"
+                v-model="loginForm.password"
+                :type="passwordType"
+                placeholder="Password"
+                name="password"
+                tabindex="2"
+                auto-complete="on"
+                @keyup.enter.native="handleLogin"
+              />
+              <transition
+                appear
+                name="animate__animated animate__flash animate__delay-2s animate__slow 5s"
+                enter-active-class="animate__flash"
+              >
+                <span class="show-pwd" @click="showPwd">
+                  <svg-icon
+                    :icon-class="
+                      passwordType === 'password' ? 'eye' : 'eye-open'
+                    "
+                  />
+                </span>
+              </transition>
+            </el-form-item>
+
+            <el-button
+              :loading="loading"
+              type="primary"
               style="
-                margin-right: 20px;
-                -webkit-filter: drop-shadow(1px 2px 5px rgb(238, 218, 128));
+                width: 100%;
+                margin-bottom: 30px;
+                -webkit-filter: drop-shadow(1px 2px 22px rgb(54, 152, 245));
               "
-              >username: admin</span
+              @click.native.prevent="handleLogin"
+              >Login</el-button
             >
-            <span
-              style="
-                -webkit-filter: drop-shadow(1px 2px 5px rgb(238, 218, 128));
-              "
-            >
-              password: any</span
-            >
-          </div>
-        </el-form>
-      </el-card>
-    </div>
+
+            <div class="tips">
+              <span
+                style="
+                  margin-right: 20px;
+                  -webkit-filter: drop-shadow(1px 2px 5px rgb(238, 218, 128));
+                "
+                >username: admin</span
+              >
+              <span
+                style="
+                  -webkit-filter: drop-shadow(1px 2px 5px rgb(238, 218, 128));
+                "
+              >
+                password: any</span
+              >
+            </div>
+          </el-form>
+        </el-card>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -207,8 +219,8 @@ $cursor: #fff;
 }
 
 .el-form-item {
-  border: 3px solid rgba(101, 163, 255, 0.911);
-  border-bottom: 3px solid rgba(101, 163, 255, 0.911);
+  border: 2px solid rgba(101, 163, 255, 0.911);
+  border-bottom: 6px solid rgba(101, 163, 255, 0.911);
   border-right: 200px solid transparent;
   background: rgba(0, 217, 255, 0.034);
   border-radius: 6px;
@@ -229,12 +241,13 @@ $light_gray: #eee;
   overflow: auto;
   .box-card {
     z-index: 5;
+
     background-color: transparentize(
       $color: rgba(107, 153, 223, 0.911),
       $amount: 0.88
     );
     -webkit-clip-path: polygon(
-      64% 0,
+      75% 0,
       100% 27%,
       100% 100%,
       50% 100%,
@@ -249,6 +262,8 @@ $light_gray: #eee;
     overflow: auto;
     border-width: 2px;
     border-color: #41d1eb;
+    border-right: 50px solid transparent;
+    border-left: 50px solid transparent;
     border-bottom: 20px solid #41d1eb;
     box-shadow: 15px 15px 300px rgba(100, 149, 223, 0.527);
   }

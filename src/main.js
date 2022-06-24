@@ -11,7 +11,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-
+import animate from 'animate.css'
 import '@/icons' // icon
 import '@/permission' // permission control
 
@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI, { locale }).use(animate)
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 
