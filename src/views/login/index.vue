@@ -1,54 +1,90 @@
+<head><link rel="stylesheet" href="animate.min.css"></head>
+
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-
-      <div class="title-container">
-        <h3 class="title">Login Form</h3>
-      </div>
-
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
-          type="text"
-          tabindex="1"
+    <div class="ds">
+      <el-card class="box-card">
+        <el-form
+          ref="loginForm"
+          :model="loginForm"
+          :rules="loginRules"
+          class="login-form"
           auto-complete="on"
-        />
-      </el-form-item>
+          label-position="left"
+          style="border-radius: 30px"
+        >
+          <div class="title-container">
+            <h3 class="title">Login Form</h3>
+          </div>
 
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :key="passwordType"
-          ref="password"
-          v-model="loginForm.password"
-          :type="passwordType"
-          placeholder="Password"
-          name="password"
-          tabindex="2"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-        </span>
-      </el-form-item>
+          <el-form-item prop="username">
+            <span class="svg-container">
+              <svg-icon icon-class="user" />
+            </span>
+            <el-input
+              ref="username"
+              v-model="loginForm.username"
+              placeholder="Username"
+              name="username"
+              type="text"
+              tabindex="1"
+              auto-complete="on"
+            />
+          </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+          <el-form-item prop="password">
+            <span class="svg-container">
+              <svg-icon icon-class="password" />
+            </span>
+            <el-input
+              :key="passwordType"
+              ref="password"
+              v-model="loginForm.password"
+              :type="passwordType"
+              placeholder="Password"
+              name="password"
+              tabindex="2"
+              auto-complete="on"
+              @keyup.enter.native="handleLogin"
+            />
+            <span class="show-pwd" @click="showPwd">
+              <svg-icon
+                :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"
+              />
+            </span>
+          </el-form-item>
 
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
-      </div>
+          <el-button
+            :loading="loading"
+            type="primary"
+            style="
+              width: 100%;
+              margin-bottom: 30px;
+              -webkit-filter: drop-shadow(1px 2px 22px rgb(54, 152, 245));
+            "
+            @click.native.prevent="handleLogin"
+            >Login</el-button
+          >
 
-    </el-form>
+          <div class="tips">
+            <span
+              style="
+                margin-right: 20px;
+                -webkit-filter: drop-shadow(1px 2px 5px rgb(238, 218, 128));
+              "
+              >username: admin</span
+            >
+            <span
+              style="
+                -webkit-filter: drop-shadow(1px 2px 5px rgb(238, 218, 128));
+              "
+            >
+              password: any</span
+            >
+          </div>
+        </el-form>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -78,8 +114,12 @@ export default {
         password: '111111'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [
+          { required: true, trigger: 'blur', validator: validateUsername }
+        ],
+        password: [
+          { required: true, trigger: 'blur', validator: validatePassword }
+        ]
       },
       loading: false,
       passwordType: 'password',
@@ -88,7 +128,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -106,15 +146,18 @@ export default {
       })
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
+          this.$store
+            .dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({ path: this.redirect || '/' })
+              this.loading = false
+            })
+            .catch(() => {
+              this.loading = false
+            })
         } else {
           console.log('error submit!!')
           return false
@@ -129,8 +172,8 @@ export default {
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-$bg:#283443;
-$light_gray:#fff;
+$bg: #283443;
+$light_gray: #fff;
 $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
@@ -140,54 +183,85 @@ $cursor: #fff;
 }
 
 /* reset element-ui css */
-.login-container {
-  .el-input {
-    display: inline-block;
+
+.el-input {
+  display: inline-block;
+  height: 47px;
+  width: 85%;
+
+  input {
+    background: transparent;
+    border: 0px;
+    -webkit-appearance: none;
+    -webkit-filter: drop-shadow(1px 2px 15px rgb(255, 212, 22));
+    border-radius: 0px;
+    padding: 12px 5px 12px 15px;
+    color: $light_gray;
     height: 47px;
-    width: 85%;
-
-    input {
-      background: transparent;
-      border: 0px;
-      -webkit-appearance: none;
-      border-radius: 0px;
-      padding: 12px 5px 12px 15px;
-      color: $light_gray;
-      height: 47px;
-      caret-color: $cursor;
-
-      &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: $cursor !important;
-      }
+    caret-color: $cursor;
+    &:-webkit-autofill {
+      box-shadow: 0 0 0px 1000px $bg inset !important;
+      -webkit-text-fill-color: $cursor !important;
     }
   }
+}
 
-  .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    color: #454545;
-  }
+.el-form-item {
+  border: 3px solid rgba(101, 163, 255, 0.911);
+  border-bottom: 3px solid rgba(101, 163, 255, 0.911);
+  border-right: 200px solid transparent;
+  background: rgba(0, 217, 255, 0.034);
+  border-radius: 6px;
+  color: #454545;
 }
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$bg: #2d3a4b;
+$bg2: red;
+$dark_gray: #889aa4;
+$light_gray: #eee;
 
 .login-container {
   min-height: 100%;
   width: 100%;
   background-color: $bg;
-  overflow: hidden;
+  overflow: auto;
+  .box-card {
+    z-index: 5;
+    background-color: transparentize(
+      $color: rgba(107, 153, 223, 0.911),
+      $amount: 0.88
+    );
+    -webkit-clip-path: polygon(
+      64% 0,
+      100% 27%,
+      100% 100%,
+      50% 100%,
+      0 100%,
+      0 0
+    );
+
+    margin: 10% auto;
+    width: 70vmin;
+    min-width: 400px;
+    height: 100%;
+    overflow: auto;
+    border-width: 2px;
+    border-color: #41d1eb;
+    border-bottom: 20px solid #41d1eb;
+    box-shadow: 15px 15px 300px rgba(100, 149, 223, 0.527);
+  }
+
+  .ds {
+    -webkit-filter: drop-shadow(0px 15px 70px #0bccee);
+  }
 
   .login-form {
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 90px 35px;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -226,7 +300,7 @@ $light_gray:#eee;
 
   .show-pwd {
     position: absolute;
-    right: 10px;
+    right: -160px;
     top: 7px;
     font-size: 16px;
     color: $dark_gray;
