@@ -32,6 +32,7 @@
                 type="text"
                 tabindex="1"
                 auto-complete="on"
+                clearable="true"
               />
             </el-form-item>
 
@@ -49,6 +50,7 @@
                 tabindex="2"
                 auto-complete="on"
                 @keyup.enter.native="handleLogin"
+                clearable="true"
               />
               <transition
                 appear
@@ -202,6 +204,7 @@ $cursor: #fff;
   width: 85%;
 
   input {
+    z-index: 10;
     background: transparent;
     border: 0px;
     -webkit-appearance: none;
@@ -209,6 +212,7 @@ $cursor: #fff;
     border-radius: 0px;
     padding: 12px 5px 12px 15px;
     color: $light_gray;
+    width: 100%;
     height: 47px;
     caret-color: $cursor;
     &:-webkit-autofill {
@@ -315,12 +319,13 @@ $light_gray: #eee;
 
   .show-pwd {
     position: absolute;
-    right: -160px;
     top: 7px;
+    right: -160px;
     font-size: 16px;
-    color: $dark_gray;
+    color: #fff;
     cursor: pointer;
     user-select: none;
+    -webkit-filter: drop-shadow(0px 4px 3px rgb(11, 132, 180));
   }
 }
 </style>
