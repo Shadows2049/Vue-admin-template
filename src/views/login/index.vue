@@ -1,105 +1,123 @@
 <template>
   <div class="login-container">
-    <particles />
-    <transition
-      appear
-      name="animate__animated animate__slideInDown animate__slow 3s"
-      enter-active-class="animate__slideInDown"
-    >
-      <div class="ds">
-        <el-card class="box-card">
-          <el-form
-            ref="loginForm"
-            :model="loginForm"
-            :rules="loginRules"
-            class="login-form"
-            auto-complete="on"
-            label-position="left"
-            style="border-radius: 30px"
-          >
-            <div class="title-container">
-              <h3 class="title">Login Form</h3>
-            </div>
-
-            <el-form-item prop="username">
-              <span class="svg-container">
-                <svg-icon icon-class="user" />
-              </span>
-              <el-input
-                ref="username"
-                v-model="loginForm.username"
-                placeholder="Username"
-                name="username"
-                type="text"
-                tabindex="1"
+    <el-row>
+      <el-col :span="19">
+        <particles />
+        <transition
+          appear
+          name="animate__animated animate__slideInDown animate__slow 3s"
+          enter-active-class="animate__slideInDown"
+        >
+          <div class="ds">
+            <el-card class="box-card">
+              <el-form
+                ref="loginForm"
+                :model="loginForm"
+                :rules="loginRules"
+                class="login-form"
                 auto-complete="on"
-                clearable="true"
-              />
-            </el-form-item>
-
-            <el-form-item prop="password">
-              <span class="svg-container">
-                <svg-icon icon-class="password" />
-              </span>
-              <el-input
-                :key="passwordType"
-                ref="password"
-                v-model="loginForm.password"
-                :type="passwordType"
-                placeholder="Password"
-                name="password"
-                tabindex="2"
-                auto-complete="on"
-                @keyup.enter.native="handleLogin"
-                clearable="true"
-              />
-              <transition
-                appear
-                name="animate__animated animate__flash animate__delay-2s animate__slow 5s"
-                enter-active-class="animate__flash"
+                label-position="left"
+                style="border-radius: 30px"
               >
-                <span class="show-pwd" @click="showPwd">
-                  <svg-icon
-                    :icon-class="
-                      passwordType === 'password' ? 'eye' : 'eye-open'
-                    "
+                <div class="title-container">
+                  <h3 class="title">Login Form</h3>
+                </div>
+
+                <el-form-item prop="username">
+                  <span class="svg-container">
+                    <svg-icon icon-class="user" />
+                  </span>
+                  <el-input
+                    ref="username"
+                    v-model="loginForm.username"
+                    placeholder="Username"
+                    name="username"
+                    type="text"
+                    tabindex="1"
+                    auto-complete="on"
+                    clearable="true"
                   />
-                </span>
-              </transition>
-            </el-form-item>
+                </el-form-item>
 
-            <el-button
-              :loading="loading"
-              type="primary"
-              style="
-                width: 100%;
-                margin-bottom: 30px;
-                -webkit-filter: drop-shadow(1px 2px 22px rgb(54, 152, 245));
-              "
-              @click.native.prevent="handleLogin"
-              >Login</el-button
-            >
+                <el-form-item prop="password">
+                  <span class="svg-container">
+                    <svg-icon icon-class="password" />
+                  </span>
+                  <el-input
+                    :key="passwordType"
+                    ref="password"
+                    v-model="loginForm.password"
+                    :type="passwordType"
+                    placeholder="Password"
+                    name="password"
+                    tabindex="2"
+                    auto-complete="on"
+                    @keyup.enter.native="handleLogin"
+                    clearable="true"
+                  />
+                  <transition
+                    appear
+                    name="animate__animated animate__flash animate__delay-2s animate__slow 5s"
+                    enter-active-class="animate__flash"
+                  >
+                    <span class="show-pwd" @click="showPwd">
+                      <svg-icon
+                        :icon-class="
+                          passwordType === 'password' ? 'eye' : 'eye-open'
+                        "
+                      />
+                    </span>
+                  </transition>
+                </el-form-item>
 
-            <div class="tips">
-              <span
-                style="
-                  margin-right: 20px;
-                  -webkit-filter: drop-shadow(1px 2px 5px rgb(238, 218, 128));
-                "
-                >username: admin</span
-              >
-              <span
-                style="
-                  -webkit-filter: drop-shadow(1px 2px 5px rgb(238, 218, 128));
-                "
-              >
-                password: any</span
-              >
-            </div>
-          </el-form>
-        </el-card>
-      </div>
-    </transition>
+                <el-button
+                  :loading="loading"
+                  type="primary"
+                  style="
+                    width: 100%;
+                    margin-bottom: 30px;
+                    -webkit-filter: drop-shadow(1px 2px 22px rgb(54, 152, 245));
+                  "
+                  @click.native.prevent="handleLogin"
+                  >Login</el-button
+                >
+
+                <div class="tips">
+                  <span
+                    style="
+                      margin-right: 20px;
+                      -webkit-filter: drop-shadow(
+                        1px 2px 5px rgb(238, 218, 128)
+                      );
+                    "
+                    >username: admin</span
+                  >
+                  <span
+                    style="
+                      -webkit-filter: drop-shadow(
+                        1px 2px 5px rgb(238, 218, 128)
+                      );
+                    "
+                  >
+                    password: any</span
+                  >
+                </div>
+              </el-form>
+            </el-card>
+          </div>
+        </transition>
+      </el-col>
+
+      <el-col :span="5">
+        <transition
+          appear
+          name="animate__animated animate__fadeInRight animate__slow 3s"
+          enter-active-class="animate__fadeInRight"
+        >
+          <el-card class="box-card2"></el-card>
+        </transition>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -125,6 +143,7 @@ export default {
       }
     }
     return {
+      color1: 'fff',
       loginForm: {
         username: 'admin',
         password: '111111'
@@ -207,16 +226,15 @@ $cursor: #fff;
   width: 85%;
 
   input {
-    z-index: 10;
     background: transparent;
     border: 0px;
     -webkit-appearance: none;
     -webkit-filter: drop-shadow(1px 2px 15px rgb(255, 212, 22));
     border-radius: 0px;
+
     padding: 12px 5px 12px 15px;
     color: $light_gray;
-    width: 100%;
-    height: 47px;
+
     caret-color: $cursor;
     &:-webkit-autofill {
       box-shadow: 0 0 0px 1000px $bg inset !important;
@@ -228,7 +246,6 @@ $cursor: #fff;
 .el-form-item {
   border: 2px solid rgba(101, 163, 255, 0.911);
   border-bottom: 6px solid rgba(101, 163, 255, 0.911);
-  border-right: 200px solid transparent;
   background: rgba(0, 217, 255, 0.034);
   border-radius: 6px;
   color: #454545;
@@ -236,13 +253,14 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg: #ffffff;
+$bg: #173c52;
 $bg2: rgb(255, 255, 255);
 $dark_gray: #889aa4;
 $light_gray: #eee;
 
 .login-container {
   min-height: 100%;
+  min-width: 600px;
   width: 100%;
   background-color: $bg;
   overflow: auto;
@@ -261,16 +279,34 @@ $light_gray: #eee;
     );
 
     margin: 10% auto;
-    width: 70vmin;
-    min-width: 400px;
+
+    min-width: 100%;
     height: 100%;
     overflow: auto;
     border-width: 2px;
     border-color: #41d1eb;
-    border-right: 50px solid transparent;
-    border-left: 50px solid transparent;
+    border-right: 120px solid transparent;
+
     border-bottom: 20px solid #41d1eb;
     box-shadow: 15px 15px 300px rgba(63, 111, 182, 0.527);
+  }
+
+  .box-card2 {
+    background-color: transparentize($color: rgb(56, 53, 221), $amount: 0.88);
+
+    margin: 0 auto;
+
+    min-width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    min-width: 300px;
+    overflow: auto;
+    border-width: 2px;
+    border-color: #41d1eb;
+    border-left: 120px solid transparent;
+    border-top: 20px solid #41d1eb;
+    border-bottom: 20px solid #41d1eb;
+    -webkit-filter: drop-shadow(50px 10px 20px #0ec8e9);
   }
 
   .ds {
@@ -279,11 +315,11 @@ $light_gray: #eee;
 
   .login-form {
     position: relative;
-    width: 520px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 520px;
     padding: 90px 35px;
     margin: 0 auto;
-    overflow: hidden;
+    overflow: auto;
   }
 
   .tips {
@@ -321,12 +357,27 @@ $light_gray: #eee;
   .show-pwd {
     position: absolute;
     top: 7px;
-    right: -160px;
     font-size: 16px;
     color: #fff;
     cursor: pointer;
     user-select: none;
     -webkit-filter: drop-shadow(0px 4px 3px rgb(11, 132, 180));
   }
+}
+
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
 }
 </style>

@@ -15,6 +15,7 @@ export default {
 body {
   margin: 0;
   font: normal 75% Arial, Helvetica, sans-serif;
+  background-color: #173c52;
 }
 
 canvas {
