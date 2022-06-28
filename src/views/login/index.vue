@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <particles />
     <transition
       appear
       name="animate__animated animate__slideInDown animate__slow 3s"
@@ -105,6 +106,7 @@
 <script>
 import { validUsername } from '@/utils/validate'
 
+import particles from '@/components/Particles/particles.vue'
 export default {
   name: 'Login',
   data() {
@@ -178,7 +180,8 @@ export default {
         }
       })
     }
-  }
+  },
+  components: { particles }
 }
 </script>
 
@@ -233,8 +236,8 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg: #2d3a4b;
-$bg2: red;
+$bg: #ffffff;
+$bg2: rgb(255, 255, 255);
 $dark_gray: #889aa4;
 $light_gray: #eee;
 
@@ -243,13 +246,11 @@ $light_gray: #eee;
   width: 100%;
   background-color: $bg;
   overflow: auto;
+
   .box-card {
     z-index: 5;
 
-    background-color: transparentize(
-      $color: rgba(107, 153, 223, 0.911),
-      $amount: 0.88
-    );
+    background-color: transparentize($color: rgb(56, 53, 221), $amount: 0.88);
     -webkit-clip-path: polygon(
       75% 0,
       100% 27%,
@@ -269,11 +270,11 @@ $light_gray: #eee;
     border-right: 50px solid transparent;
     border-left: 50px solid transparent;
     border-bottom: 20px solid #41d1eb;
-    box-shadow: 15px 15px 300px rgba(100, 149, 223, 0.527);
+    box-shadow: 15px 15px 300px rgba(63, 111, 182, 0.527);
   }
 
   .ds {
-    -webkit-filter: drop-shadow(0px 15px 70px #0bccee);
+    -webkit-filter: drop-shadow(0px 15px 35px #0ec8e9);
   }
 
   .login-form {

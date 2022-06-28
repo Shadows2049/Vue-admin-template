@@ -14,7 +14,7 @@ import router from './router'
 import animate from 'animate.css'
 import '@/icons' // icon
 import '@/permission' // permission control
-
+import particles from '@/components/Particles/particles'
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
 Vue.use(ElementUI, { locale }).use(animate)
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
-
+Vue.use(particles)
 Vue.config.productionTip = false
 
 new Vue({
