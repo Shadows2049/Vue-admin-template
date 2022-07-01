@@ -123,4 +123,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: calc(100vh+50px);
+}
+</style>

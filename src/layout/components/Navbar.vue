@@ -66,11 +66,12 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
+  z-index: 5;
   height: 50px;
   overflow: hidden;
   position: relative;
-  background-color: transparentize($color: rgb(24, 24, 192), $amount: 0.88);
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  background-color: transparentize($color: rgb(23, 154, 206), $amount: 0.58);
+  box-shadow: 0 1px 90px rgba(13, 93, 168, 0.836);
 
   .hamburger-container {
     line-height: 46px;
