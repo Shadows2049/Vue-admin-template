@@ -5,7 +5,11 @@
         <el-input v-model="form.name" />
       </el-form-item>
       <el-form-item label="Activity zone">
-        <el-select v-model="form.region" placeholder="please select your zone">
+        <el-select
+          v-model="form.region"
+          placeholder="please select your zone"
+          style="color: black"
+        >
           <el-option label="Zone one" value="shanghai" />
           <el-option label="Zone two" value="beijing" />
         </el-select>
@@ -22,6 +26,7 @@
         <el-col :span="2" class="line">-</el-col>
         <el-col :span="11">
           <el-time-picker
+            class="ep"
             v-model="form.date2"
             type="fixed-time"
             placeholder="Pick a time"
@@ -87,7 +92,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .line {
   text-align: center;
 }
